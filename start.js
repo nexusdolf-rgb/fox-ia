@@ -2,7 +2,7 @@ const fs = require('fs');
 const path = require('path');
 
 const candidats = fs.readdirSync(__dirname)
-  .filter(f => /^index.*\.js$/i.test(f) && f !== 'start.js')
+  .filter(f => f.toLowerCase().endsWith('.js') && f !== 'start.js' && f !== 'shim.js')
   .map(f => {
     const st = fs.statSync(path.join(__dirname, f));
     return { f, size: st.size, time: st.mtimeMs };
